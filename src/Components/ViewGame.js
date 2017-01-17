@@ -89,7 +89,7 @@ class ViewGame extends React.Component {
     .then( (response)=> {
       console.log('fetch has run');
       console.log('response',response.data)
-      this.setState({'titles':response.data});
+      this.setState({titles:response.data});
       // console.log(this.state.titles)
     })
     .catch( (error)=> {
@@ -105,10 +105,34 @@ class ViewGame extends React.Component {
   }
 
   // printing stats
-  printStats() {
+  printStats(key) {
     return (
-      <h1>Hello</h1>
-    )
+      Object.keys(this.state.titles).map( (data) => {
+        return (
+        <li>
+          <p>{this.state.titles[data]['title']}</p>
+          <p>{this.state.titles[data]['description']}</p>
+          <button>Delete</button>
+          <button>Edit</button>
+
+        </li>
+      )
+      })
+    //   Object.keys(this.state.titles).map((data) => {
+    //       return <li id={data} key={data}>
+    //           {this.state.games[`${data}`]['title']}
+    //           <br/> {< img src = {
+    //               this.state.games[`${data}`]['url']
+    //           } />}
+    //           <br/> {/* View Button - sending key value as argument */}
+    //           <button onClick={() => this.viewGame(data)}>View</button>
+    //           <br/> {/* Edit Button - sending key value as argument */}
+    //           <button onClick={() => this.editGame(data)}>Edit</button>
+    //           {/* Delete Button -sending key value as argument */}
+    //           <button onClick={() => this.deleteGame(data)}>Delete</button>
+    //       </li>
+    // })
+  )
   }
 
   // function to grab input title
@@ -139,7 +163,7 @@ class ViewGame extends React.Component {
       { /* Stats container */ }
       <div id = "stats"> </div>
       {this.fetchStat(ViewGame.index)}
-      {this.printStats()}
+      {this.printStats(ViewGame.index)}
       </div>
     )
   }
