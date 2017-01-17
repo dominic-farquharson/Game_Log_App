@@ -25,7 +25,7 @@ class Header extends Component {
       activeClassName="underline">
       Add Game
       </Link>
-
+      
       </div>
     )
   }

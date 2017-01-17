@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import './ViewGame.css';
 import axios from 'axios';
+import  {Link}  from 'react-router';
 
 // let EditGame = (props) => {
 //   return (
@@ -10,7 +11,7 @@ import axios from 'axios';
 //   )
 // }
 
-class EditGame extends React.Component {
+class ViewGame extends React.Component {
   constructor() {
     super();
     // binding functions
@@ -18,10 +19,13 @@ class EditGame extends React.Component {
     this.postStat = this.postStat.bind(this);
     this.grabInputTitle = this.grabInputTitle.bind(this);
     this.grabInputDescription = this.grabInputDescription.bind(this);
+    this.fetchStat = this.fetchStat.bind(this);
+    this.printStats = this.printStats.bind(this);
     // setting initial state of input fields
     this.state = {
       title:'',
-      description:''
+      description:'',
+      titles:[]
     }
   }
 
@@ -43,9 +47,8 @@ class EditGame extends React.Component {
     <input onChange={this.grabInputDescription} placeholder={this.state.description} id="Description" />
     </legend>
     <button onClick={ ()=> this.postStat(this.props.index) }>Submit</button>
-    </div>
 
-    ;
+    </div>;
     console.log('add Stat')
     ReactDOM.render(
       testing,
@@ -77,9 +80,35 @@ class EditGame extends React.Component {
     // )
   }
 
-  // printing Stats from database
-  fetchStat() {
+  // fetching Stats from database
+  fetchStat(key) {
+    console.log(key);
+    console.log('Fetch Stat has run');
+    const fetchUrl = `https://game-log-app.firebaseio.com/${key}/stats/.json`;
+    axios.get(fetchUrl)
+    .then( (response)=> {
+      console.log('fetch has run');
+      console.log('response',response.data)
+      this.setState({'titles':response.data});
+      // console.log(this.state.titles)
+    })
+    .catch( (error)=> {
+      console.log(error)
+    })
 
+    return (
+      console.log('key',key),
+        console.log('titles',this.state.titles)
+    )
+
+
+  }
+
+  // printing stats
+  printStats() {
+    return (
+      <h1>Hello</h1>
+    )
   }
 
   // function to grab input title
@@ -95,8 +124,9 @@ class EditGame extends React.Component {
 
   render() {
     const ViewGame = this.props;
-    return ( <
-      div  >
+    return (
+      <div  >
+      {ViewGame.index}
       <
       h1 > {
         `${ViewGame.games[ViewGame.index]['title'] }`
@@ -104,11 +134,15 @@ class EditGame extends React.Component {
       <button onClick = {
         () => this.addStat()
       } > Add Stat < /button>
+      {/* Return home button */}
+      <button onClick={ ()=> location.reload() }>Return Home</button>
       { /* Stats container */ }
-      <div id = "stats" > < /div> <
-      /div>
+      <div id = "stats"> </div>
+      {this.fetchStat(ViewGame.index)}
+      {this.printStats()}
+      </div>
     )
   }
 }
 
-export default EditGame;
+export default ViewGame;

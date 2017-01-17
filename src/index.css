@@ -6,10 +6,11 @@ body {
 
 .underline {
   text-decoration: underline;
-  color:blue;
+  color: purple;
+  font-size: 2em;
 }
 
 img {
-  width:100px;
-  height:100px;
+  width: 100px;
+  height: 100px;
 }

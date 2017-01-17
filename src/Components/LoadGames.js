@@ -70,6 +70,7 @@ class LoadGames extends Component {
 
     // outPutting the PrintGames component
     printGames() {
+      console.log('print games has run')
         return (
             <PrintGames gamesTitle={Object.keys(this.state.games).map((data) => {
                 return <li id={data} key={data}>
@@ -187,7 +188,7 @@ class LoadGames extends Component {
 
       // rendering directly to the Dom
       ReactDOM.render(
-        <ViewGame games={this.state.games} index={key} />,
+        <ViewGame games={this.state.games} index={key} loadGames={()=>this.printGames() }/>,
       document.getElementById('gamesFeed')
       )
     }
