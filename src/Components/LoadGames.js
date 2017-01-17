@@ -9,13 +9,17 @@ Will perform a get request to output games data
 class LoadGames extends Component {
     constructor() {
         super();
-        this.getGames = this.getGames.bind(this);
+
         // this.printGames = this.printGames.bind(this);
         this.state = {
             title: [],
             url: [],
             games: []
         }
+        // binding methods
+        this.getGames = this.getGames.bind(this);
+        this.deleteGame = this.deleteGame.bind(this);
+        this.editGame = this.editGame.bind(this);
     }
 
     // componentWillMount() {
@@ -51,6 +55,16 @@ class LoadGames extends Component {
     //   )
     // }
 
+    // Delete Game from database
+    deleteGame() {
+      console.log('I will delete')
+    }
+
+    // edit game title
+    editGame() {
+      console.log('I will edit')
+    }
+
     render() {
         return (
             <div>
@@ -58,8 +72,11 @@ class LoadGames extends Component {
                 <PrintGames
                 gamesTitle={Object.keys(this.state.games).map((data, i) => {
                     return <li key={i}>
-                        {this.state.games[`${data}`]['title']} {<br />}
+                        {this.state.games[`${data}`]['title']} <br />
                         {<img src={this.state.games[`${data}`]['url']} />}
+                        <br />
+                        <button onClick={this.editGame}>Edit</button>
+                        <button onClick={this.deleteGame}>Delete</button>
 
                       </li>
                 })}    />

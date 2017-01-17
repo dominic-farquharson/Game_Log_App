@@ -7,6 +7,7 @@ class PrintGames extends Component {
       <ul>
         <div>
           {this.props.gamesTitle}
+        
       </div>
       </ul>
     )
