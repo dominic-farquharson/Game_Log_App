@@ -77,14 +77,12 @@ class GamesListItem extends React.Component {
       this.setState({url: e.target.value});
   }
 
+
+
   render() {
     const gameId=this.props.gameId;
     // Rendering Game if View Button is pressed
-      if(this.props.view === true) {
-        return (
-          <h1>View of {gameId}</h1>
-        )
-      }
+
 
       if(this.props.edit===false) {
         return (
@@ -94,7 +92,7 @@ class GamesListItem extends React.Component {
         {<img src={this.props.gameData[gameId]['url']} />}
         <br />
         {/* View Button - sending key value as argument */}
-       <button onClick={() => this.props.toggleView()}>View</button>
+       <button onClick={() => {this.props.toggleView() }}>View</button>
         <br/> {/* Edit Button - sending key value as argument */}
         <button onClick={() => this.props.toggleEdit()}>Edit</button>
        {/* Delete Button -sending key value as argument */}
