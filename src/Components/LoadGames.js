@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import PrintGames from './PrintGames';
+import GamesList from './GamesList';
 import $ from 'jquery';
 
 import './LoadGames.css';
@@ -21,12 +21,12 @@ class LoadGames extends Component {
         this.state = {
             title: [],
             url: [],
-            games: []
+            games: {}
         }
         // binding methods
         this.getGames = this.getGames.bind(this);
-        this.deleteGame = this.deleteGame.bind(this);
-        this.editGame = this.editGame.bind(this);
+        // this.deleteGame = this.deleteGame.bind(this);
+        // this.editGame = this.editGame.bind(this);
         this.printGames = this.printGames.bind(this);
         this.postGames = this.postGames.bind(this);
         this.viewGame = this.viewGame.bind(this);
@@ -52,7 +52,7 @@ class LoadGames extends Component {
         const url = 'https://game-log-app.firebaseio.com/.json';
         axios.get(url).then((response) => {
             console.log(response);
-            this.setState({games: response.data, title: response.data.title});
+            this.setState({games: response.data});
             // this.printGames();
         }).catch((error) => {
             console.log(error);
@@ -68,63 +68,37 @@ class LoadGames extends Component {
     //   )
     // }
 
-    // outPutting the PrintGames component
+    // outPutting the GamesList component
     printGames() {
-      console.log('print games has run')
+      console.log('print games has run');
+      console.log(this.state.games)
         return (
-            <PrintGames gamesTitle={Object.keys(this.state.games).map((data) => {
-                return <li id={data} key={data}>
-                    {this.state.games[`${data}`]['title']}
-                    <br/> {< img src = {
-                        this.state.games[`${data}`]['url']
-                    } />}
-                    <br/> {/* View Button - sending key value as argument */}
-                    <button onClick={() => this.viewGame(data)}>View</button>
-                    <br/> {/* Edit Button - sending key value as argument */}
-                    <button onClick={() => this.editGame(data)}>Edit</button>
-                    {/* Delete Button -sending key value as argument */}
-                    <button onClick={() => this.deleteGame(data)}>Delete</button>
-                </li>
-            })}/>
-
+          <GamesList
+            gameData={this.state.games}
+            onGameUpdated={this.updateGame}
+            getGames={ ()=>this.getGames() }
+            printGames= { ()=> this.printGames() }
+          />
         )
     }
 
-    // Delete Game from database
-    deleteGame(key) {
-        // grabbing prompt value
-        const input = prompt('Would you like to delete this Game? (Y/N)', 'Type Y or N');
-        // Item deleted if yes
-        if (input == 'Y') {
-            const url = `https://game-log-app.firebaseio.com/${key}/.json`;
-            axios.delete(url).then((response) => {
-                alert('Game has been deleted');
-                // Updating state, by performing another get request
-                this.getGames();
-                // printing out games based on updated State
-                this.printGames();
 
-            }).catch((error) => console.log(error)// Item not deleted if no
-            );
-        } else {
-            alert('It will not be deleted');
-        }
-
-    }
 
     // edit game title  - Make edit game component?????
-    editGame(key) {
-        console.log('I will edit', key);
-        console.log(this.state.games[`${key}`]['title'])
-        // Changing html to input field
-        $(`#${key}`).html(
-
-          `<input id="editTitle" value=${this.state.games[key]['title']} />
-
-          <input id="editUrl" value=${this.state.games[key]['url']} />
-
-          <button onClick= ${ ()=> this.postGames(key) } >Submit</button> `
-        );
+    // editGame(key) {
+    //     console.log('I will edit', key);
+    //     console.log(this.state.games[`${key}`]['title'])
+    //     // Changing html to input field
+    //
+    //     // post game functions will not load when double brackets are used
+    //     $(`#${key}`).html(
+    //
+    //       `<input id="editTitle" value=${this.state.games[key]['title']} />
+    //
+    //       <input id="editUrl" value=${this.state.games[key]['url']} />
+    //
+    //       <button onClick= ${ () => this.postGames(key) } >Submit</button> `
+    //     );
         /*
           $(`#${key}`).html(`<input id="editTitle" value="${this.state.games[key]["title"]}" />` );
               $(`#${key}`).append(`<input id="editUrl" value="${this.state.games[key]["url"]}" />`);
@@ -134,12 +108,16 @@ class LoadGames extends Component {
             $(`#${key}`).append(` <button onClick=" () =>{console.log('hi')}"    >Submmit</button> `);
 */
 
-        return ( <LoadGames />
-        // $(`#${key}`).html(
-        //   `${<LoadGames></LoadGames>}`
+        // return ( <LoadGames />
+        // // $(`#${key}`).html(
+        // //   `${<LoadGames></LoadGames>}`
+        // // )
         // )
-        )
 
+    // }
+
+    updateGame(gameId, gameDat) {
+      // make axios call
     }
     // posting edited game to database
     postGames(key) {
@@ -187,10 +165,10 @@ class LoadGames extends Component {
 
 
       // rendering directly to the Dom
-      ReactDOM.render(
-        <ViewGame games={this.state.games} index={key} loadGames={()=>this.printGames() }/>,
-      document.getElementById('gamesFeed')
-      )
+      // ReactDOM.render(
+      //   <ViewGame games={this.state.games} index={key}  loadGames={()=>this.printGames() }/>,
+      // document.getElementById('gamesFeed')
+      // )
     }
 
 
@@ -200,10 +178,8 @@ class LoadGames extends Component {
             <div>
                 <div>Games Feed</div>
                 {this.printGames()}
-
             </div>
         )
-
     }
 }
 export default LoadGames;

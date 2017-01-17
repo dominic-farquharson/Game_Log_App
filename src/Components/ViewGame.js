@@ -21,11 +21,14 @@ class ViewGame extends React.Component {
     this.grabInputDescription = this.grabInputDescription.bind(this);
     this.fetchStat = this.fetchStat.bind(this);
     this.printStats = this.printStats.bind(this);
+    this.editStat = this.editStat.bind(this);
+    this.deleteStat = this.deleteStat.bind(this);
     // setting initial state of input fields
     this.state = {
       title:'',
       description:'',
-      titles:[]
+      titles:[],
+      url:''
     }
   }
 
@@ -88,7 +91,7 @@ class ViewGame extends React.Component {
     axios.get(fetchUrl)
     .then( (response)=> {
       console.log('fetch has run');
-      console.log('response',response.data)
+      console.log('response',response.data);
       this.setState({titles:response.data});
       // console.log(this.state.titles)
     })
@@ -112,27 +115,23 @@ class ViewGame extends React.Component {
         <li>
           <p>{this.state.titles[data]['title']}</p>
           <p>{this.state.titles[data]['description']}</p>
-          <button>Delete</button>
-          <button>Edit</button>
+          <button onClick={ ()=> this.deleteStat(data) }>Delete</button>
+          <button onClick={ ()=> this.editStat(data) }>Edit</button>
 
         </li>
       )
       })
-    //   Object.keys(this.state.titles).map((data) => {
-    //       return <li id={data} key={data}>
-    //           {this.state.games[`${data}`]['title']}
-    //           <br/> {< img src = {
-    //               this.state.games[`${data}`]['url']
-    //           } />}
-    //           <br/> {/* View Button - sending key value as argument */}
-    //           <button onClick={() => this.viewGame(data)}>View</button>
-    //           <br/> {/* Edit Button - sending key value as argument */}
-    //           <button onClick={() => this.editGame(data)}>Edit</button>
-    //           {/* Delete Button -sending key value as argument */}
-    //           <button onClick={() => this.deleteGame(data)}>Delete</button>
-    //       </li>
-    // })
   )
+  }
+
+  // edit Stat
+  editStat(key) {
+    console.log('edit stat', key)
+  }
+
+  // delete Stat
+  deleteStat(key) {
+    console.log('Delete Stat', key)
   }
 
   // function to grab input title
@@ -151,10 +150,15 @@ class ViewGame extends React.Component {
     return (
       <div  >
       {ViewGame.index}
-      <
-      h1 > {
+      {/* Heading for Game */}
+      <h1>
+      {
         `${ViewGame.games[ViewGame.index]['title'] }`
-      } < /h1>
+      }
+      </h1>
+      {/* Games Url */}
+      <img src={ViewGame.games[ViewGame.index]['url']} />
+      <br />
       <button onClick = {
         () => this.addStat()
       } > Add Stat < /button>
@@ -163,6 +167,8 @@ class ViewGame extends React.Component {
       { /* Stats container */ }
       <div id = "stats"> </div>
       {this.fetchStat(ViewGame.index)}
+
+      {/* Prints Stats w/ buttons */}
       {this.printStats(ViewGame.index)}
       </div>
     )
