@@ -21,7 +21,8 @@ class GamesList extends Component {
   constructor() {
     super();
     this.state = {
-      edit:false
+      edit:false,
+      view:false
     }
     this.gameListItems = this.gameListItems.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
@@ -56,6 +57,8 @@ class GamesList extends Component {
       this.setState({edit:true})
     }
   }
+
+  // setting state of view to true 
 
   render(){
     return(

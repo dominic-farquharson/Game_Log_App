@@ -93,7 +93,7 @@ class GamesListItem extends React.Component {
         {<img src={this.props.gameData[gameId]['url']} />}
         <br />
         {/* View Button - sending key value as argument */}
-       <button onClick={() => this.viewGame(gameId)}>View</button>
+       <button onClick={() => this.props.toggleView()}>View</button>
         <br/> {/* Edit Button - sending key value as argument */}
         <button onClick={() => this.props.toggleEdit()}>Edit</button>
        {/* Delete Button -sending key value as argument */}
