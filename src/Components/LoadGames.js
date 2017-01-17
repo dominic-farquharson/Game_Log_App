@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import PrintGames from './PrintGames';
 import $ from 'jquery';
-import EditGame from './EditGame';
+
 import './LoadGames.css';
+
+//testing
+import ReactDOM from 'react-dom';
+import ViewGame from './ViewGame';
+
 
 /* Load Game component
 Will perform a get request to output games data
@@ -25,6 +30,7 @@ class LoadGames extends Component {
         this.printGames = this.printGames.bind(this);
         this.postGames = this.postGames.bind(this);
         this.viewGame = this.viewGame.bind(this);
+        // this.postStat = this.postStat.bind(this);
     }
 
     // componentWillMount() {
@@ -162,26 +168,31 @@ class LoadGames extends Component {
         // })
     }
 
-    // Creating Game Component - appears on Click
+    // Creating Game Component - appears on Click, prints out Game Stats to screen
     viewGame(key) {
       console.log('key', key);
       //
       //
-      const title =`<h1>${this.state.games[key]['title']}</h1>`;
-      const gamesFeed = $('#gamesFeed').html(title);
+      // const title =`<h1>${this.state.games[key]['title']}</h1>`;
+      // const gamesFeed = $('#gamesFeed').html(title);
 
       // Return Home and Add Stat Button
 
       // doesn't work
       // const button = `<button id="view" onClick=${() => {alert('hello') }}>Add Stat</button><br /><button id="view" onClick=${ ()=> this.printGames() }>Return Home</button>`;
       // works
-        const button = `<button id="addStat" onClick=${alert('hello') }>Add Stat</button><br /><button id="view" onClick=${ ()=> this.printGames() }>Return Home</button>`;
 
-      gamesFeed.append(button);
-
+      //gamesFeed.append(button);
 
 
+      // rendering directly to the Dom
+      ReactDOM.render(
+        <ViewGame games={this.state.games} index={key} />,
+      document.getElementById('gamesFeed')
+      )
     }
+
+
 
     render() {
         return (
