@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <BrowserRouter>
       <div className="App">
-          <Header />
+        
           <Match exactly pattern="/" component={Home} />
           <Match exactly pattern="/AddGame" component={AddGame} />
       </div>

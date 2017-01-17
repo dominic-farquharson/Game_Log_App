@@ -1,11 +1,25 @@
 import React, {Component} from 'react';
 import  {Link}  from 'react-router';
 
+// Header Component
 class Header extends Component {
+  constructor(props) {
+    super(props);
+
+
+  }
+
   render() {
+      const header = this.props;
     return(
       <div>
-      <div> Header is connected</div>
+        <h1>{header.title}</h1>
+      <Link to="/"
+      activeOnlyWhenExact
+      acitiveClassName="underline">
+      Home
+    </Link>
+
       <Link to="/AddGame"
       activeOnlyWhenExact
       activeClassName="underline">

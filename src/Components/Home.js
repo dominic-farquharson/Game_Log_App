@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
+import Header from './Header';
+import LoadGames from './LoadGames';
 
+// Home class component - render the root page
 class Home extends Component {
-  render() {
-    return(
-      <h1>Home</h1>
-    )
-  }
+    render() {
+        return (
+            <div>
+                <Header title="Game Logger Home"/>
+                <LoadGames />
+            </div>
+        )
+    }
 }
 
 export default Home;

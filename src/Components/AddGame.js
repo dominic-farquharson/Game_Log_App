@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import Header from './Header';
 
-class AddGame extends Component {
-  render() {
-    return(
-      <div>
-      AddGame</div>
+// Add Game Functionial Component
+let AddGame = () => {
+
+    return (
+      <Header title="Add Game"/>
     )
-  }
+
 }
+
 
 export default AddGame;
