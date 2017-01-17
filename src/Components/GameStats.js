@@ -24,7 +24,7 @@ class GameStats extends React.Component {
       axios.put(postUrl, {title:inputTitle, description:description})
       .then( (response) => {
         this.setState({editStat:false});
-        //this.printStats(key);
+        //this.printStats(key);:
 
       })
       .catch( (error) => {
