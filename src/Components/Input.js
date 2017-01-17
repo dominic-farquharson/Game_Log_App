@@ -10,40 +10,50 @@ class Input extends React.Component {
         }
         // binding functions
         this.grabInputTitle = this.grabInputTitle.bind(this);
-          this.grabInputUrl = this.grabInputUrl.bind(this);
+        this.grabInputUrl = this.grabInputUrl.bind(this);
         this.postInput = this.postInput.bind(this);
     }
     // function to handle input field changes, setting input as state
     grabInputTitle(e) {
-      this.setState({title:e.target.value});
+        this.setState({title: e.target.value});
     }
     // function to grab url from url input field
     grabInputUrl(e) {
-      this.setState({url:e.target.value});
+        this.setState({url: e.target.value});
     }
 
     postInput() {
 
-      const inputTitle = this.state.title;
-      const url = this.state.url;
-        console.log('title',inputTitle, 'url', url)
-      // making a post request
-      // posting game title from input field
-      // axios.post(url, {title:inputValue}).then( ()=>{
-      //   console.log('Request has been sent.')
-      // })
-      // .catch(
-      //   (error) => {
-      //     console.log('There was an error');
-      //   })
-    }
+        const inputTitle = this.state.title;
+        const url = this.state.url;
+        const postUrl = 'https://game-log-app.firebaseio.com/.json';
 
+        //console.log('title',inputTitle, 'url', url)
+
+        //  making a post request
+        //  posting game title and game url from input fields
+        axios.post(postUrl, {
+            title: inputTitle,
+            url: url
+        }).then(() => {
+            console.log('Request has been sent.')
+        }).catch((error) => {
+            console.log('There was an error');
+        })
+    }
 
     render() {
         return (
             <div>
-                <input placeholder={this.state.title} onChange={this.grabInputTitle}/>
-                <input placeholder={this.state.url} onChange={this.grabInputUrl}/>
+                <label htmlFor="title">Title
+
+                    <input id="title" placeholder={this.state.title} onChange={this.grabInputTitle}/>
+
+                </label>
+                <br/>
+                <label htmlFor="url">Enter the Game cover (url)
+                    <input id="url" placeholder={this.state.url} onChange={this.grabInputUrl}/>
+                </label>
                 <button onClick={this.postInput}>Submit</button>
             </div>
         )
