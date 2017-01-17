@@ -45,6 +45,9 @@ class GamesList extends Component {
     this.grabInputDescription = this.grabInputDescription.bind(this);
     this.deleteStat = this.deleteStat.bind(this);
   }
+  componentDidMount() {
+      this.printStats(this.state.key)
+  }
   gameListItems() {
           // if (this.state.view === false) {
     const listItems = Object.keys(this.props.gameData).map((Id) => {
@@ -152,14 +155,13 @@ class GamesList extends Component {
 
   // fetching Stats from database
   printStats(key) {
+    console.log(key)
     const fetchUrl = `https://game-log-app.firebaseio.com/${key}/stats/.json`;
-    console.log('stats key,',key);
     axios.get(fetchUrl)
     .then( (response)=> {
       console.log('fetch has run');
-      console.log('response',response.data);
       this.setState({stats:response.data});
-      console.log('game stats state',this.state.stats)
+
     })
     .catch( (error)=> {
       console.log(error)
@@ -176,6 +178,9 @@ class GamesList extends Component {
                 statTitle={this.state.stats[Id]['title']}
                 statDescription = {this.state.stats[Id]['description']}
                 deleteStats={ ()=> this.deleteStat(Id)}
+                statKey={Id}
+                gameKey={this.state.key}
+
               />
               </li>
 
@@ -194,8 +199,6 @@ class GamesList extends Component {
         console.log('key', key);
           axios.post(postUrl, {title:inputTitle, description:description})
           .then( (response) => {
-            console.log(response.data)
-            console.log('Success!');
             this.setState({editStat:false});
             this.printStats(key);
 
@@ -207,8 +210,6 @@ class GamesList extends Component {
       }
 
       deleteStat(key) {
-        console.log('delete',key);
-        console.log(this.state.game);
             // grabbing prompt value
             const input = prompt('Would you like to delete this Stat? (Y/N)', 'Type Y or N');
             // Item deleted if yes

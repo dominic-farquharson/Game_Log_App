@@ -70,8 +70,6 @@ class LoadGames extends Component {
 
     // outPutting the GamesList component
     printGames() {
-      console.log('print games has run');
-      console.log(this.state.games)
         return (
           <GamesList
             gameData={this.state.games}

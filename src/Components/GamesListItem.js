@@ -40,8 +40,6 @@ class GamesListItem extends React.Component {
 
   // posting edited game to database
   postGames(key) {
-    console.log(key)
-    console.log(this.state.title)
     // chaning edit state to false on Submit
 
     //this.props.toggleEdit();
@@ -50,6 +48,7 @@ class GamesListItem extends React.Component {
       const title = this.state.title;
       const url = this.state.url;
       // Url of item in database
+
       const postUrl =  `https://game-log-app.firebaseio.com/${key}/.json`;
 
       //  posting game title and game url from input fields
@@ -107,13 +106,14 @@ class GamesListItem extends React.Component {
       // runs When Edit State is true
       return (
         <li id={gameId} key={gameId}>
-          <p>Edit Title</p>
+          <p>Edit Title <br />(Editing will delete all stats)</p>
           <input placeholder={this.props.gameData[gameId]['title']} onChange={ this.grabInputTitle } />
           <br/>
           <p>Edit Image Url</p>
           {<input placeholder={this.props.gameData[gameId]['url']} onChange={this.grabInputUrl} />}
           <br />
          {/* Delete Button -sending key value as argument */}
+         <button onClick={() => this.props.toggleEdit()}>Cancel</button>
           <button onClick={()=>this.postGames(gameId)}>Submit</button>
           <br />
           <hr />
