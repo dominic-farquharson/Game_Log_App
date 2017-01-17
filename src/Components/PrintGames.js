@@ -4,7 +4,11 @@ import axios from 'axios';
 class PrintGames extends Component {
   render(){
     return(
-      <ul>{this.props.games}</ul>
+      <ul>
+        <div>
+          {this.props.gamesTitle}
+      </div>
+      </ul>
     )
   }
 }
