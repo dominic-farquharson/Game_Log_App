@@ -29,7 +29,10 @@ class GamesList extends Component {
       view:false,
       key:'',
       gameData:'',
-      stats:''
+      stats:'',
+      editStat:false,
+      statDescription:'Enter a Description',
+      statTitle:'Enter a title'
     }
     this.gameListItems = this.gameListItems.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
@@ -37,6 +40,9 @@ class GamesList extends Component {
     this.toggleView = this.toggleView.bind(this);
     this.fetchGameData = this.fetchGameData.bind(this);
     this.printStats = this.printStats.bind(this);
+    this.postStat = this.postStat.bind(this);
+    this.grabInputTitle = this.grabInputTitle.bind(this);
+    this.grabInputDescription = this.grabInputDescription.bind(this);
   }
   gameListItems() {
           // if (this.state.view === false) {
@@ -77,6 +83,15 @@ class GamesList extends Component {
     this.setState({key:key})
   }
 
+  // function to handle input field changes, setting input as state
+  grabInputTitle(e) {
+      this.setState({statTitle: e.target.value});
+  }
+  // function to grab url from url input field
+  grabInputDescription(e) {
+      this.setState({statDescription: e.target.value});
+  }
+
   // setting state of edit to true - rename to toggle edit
   toggleEdit() {
     if(this.state.edit === true)
@@ -97,6 +112,17 @@ class GamesList extends Component {
     this.setState({view:false})
     else {
       this.setState({view:true})
+    }
+  }
+
+  toggleEditStat() {
+    if(this.state.editStat == null) {
+      this.setState({editStat:false})
+    }
+    if(this.state.editStat=== true) {
+    this.setState({editStat:false})}
+    else {
+      this.setState({editStat:true})
     }
   }
 
@@ -138,7 +164,9 @@ class GamesList extends Component {
       console.log(error)
     })
 
-
+        if(this.state.stats ===null) {
+          return;
+        }
         const listItems = Object.keys(this.state.stats).map((Id) => {
 
             return(
@@ -156,6 +184,25 @@ class GamesList extends Component {
 
       }
 
+      // function to post stat to database - post request
+      postStat(key) {
+        const inputTitle = this.state.statTitle;
+        const description= this.state.statDescription;
+        const postUrl = `https://game-log-app.firebaseio.com/${key}/stats/.json`;
+        console.log('key', key);
+          axios.post(postUrl, {title:inputTitle, description:description})
+          .then( (response) => {
+            console.log(response.data)
+            console.log('Success!');
+            this.setState({editStat:false})
+
+          })
+          .catch( (error) => {
+            console.log(error)
+          })
+
+      }
+
 
   render(){
 
@@ -168,12 +215,14 @@ class GamesList extends Component {
 
 
         else {
+          if(this.state.editStat ===false) {
         return (
           <div>
                 {/* View Button - runs when view state is true */}
                 <h1>{this.state.gameData['title']}</h1>
                 <img src={this.state.gameData['url']} />
-                <button>Add Stat</button>
+                <br />
+                <button onClick={ ()=> this.toggleEditStat()}>Add Stat</button>
 
                 <button onClick={()=> this.toggleView()}>Return</button>
                 {/* Printing games from database */}
@@ -181,6 +230,18 @@ class GamesList extends Component {
 
         </div>
       )
+    }
+    else {
+      return (
+        <div>
+        <h1>Add A Stat</h1>
+        <input placeholder={this.state.statTitle} onChange={this.grabInputTitle}/>
+        <input placeholder={this.state.statDescription} onChange={this.grabInputDescription}/>
+        <button onClick={ ()=> this.postStat(this.state.key)}>Submit Stat</button>
+        <button onClick={ ()=>this.toggleEditStat()}>Cancel</button>
+        </div>
+      )
+    }
 }
 
   }
