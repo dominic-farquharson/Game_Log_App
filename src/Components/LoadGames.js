@@ -28,7 +28,7 @@ class LoadGames extends Component {
         // this.deleteGame = this.deleteGame.bind(this);
         // this.editGame = this.editGame.bind(this);
         this.printGames = this.printGames.bind(this);
-        this.postGames = this.postGames.bind(this);
+        // this.postGames = this.postGames.bind(this);
         this.viewGame = this.viewGame.bind(this);
         // this.postStat = this.postStat.bind(this);
     }
@@ -78,6 +78,7 @@ class LoadGames extends Component {
             onGameUpdated={this.updateGame}
             getGames={ ()=>this.getGames() }
             printGames= { ()=> this.printGames() }
+
           />
         )
     }
@@ -119,33 +120,7 @@ class LoadGames extends Component {
     updateGame(gameId, gameDat) {
       // make axios call
     }
-    // posting edited game to database
-    postGames(key) {
-        console.log('yes?', key)
-        // const inputTitle = $(`#editTitle`).val();
-        // // Edited url
-        // const url = $(`#editUrl`).val();
-        // // Url of item in database
-        // const postUrl =  `https://game-log-app.firebaseio.com/${key}/.json`;
-        // // function to post new game information
-        // this.postGames( postUrl, inputTitle, url)
-        //
-        //
-        //
-        // //  posting game title and game url from input fields
-        // axios.post(postUrl, {
-        //     title: inputTitle,
-        //     url: url
-        // }).then(() => {
-        //     console.log('Request has been sent.');
-        //     // Updating state, by performing another get request
-        //     this.getGames();
-        //     // printing out games based on updated State
-        //     this.printGames();
-        // }).catch((error) => {
-        //     console.log('There was an error');
-        // })
-    }
+
 
     // Creating Game Component - appears on Click, prints out Game Stats to screen
     viewGame(key) {

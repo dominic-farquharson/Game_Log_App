@@ -11,7 +11,7 @@ Object.keys(this.state.games).map((gameId) => {
         <br/> {/* View Button - sending key value as argument *///}
         // <button onClick={() => this.viewGame(data)}>View</button>
         // <br/> {/* Edit Button - sending key value as argument */}
-        // <button onClick={() => this.editGame(data)}>Edit</button>
+        // <button onClick={() => this.toggleEdit(data)}>Edit</button>
         // {/* Delete Button -sending key value as argument */}
         // <button onClick={() => this.deleteGame(data)}>Delete</button>
 //    </li>
@@ -20,7 +20,11 @@ Object.keys(this.state.games).map((gameId) => {
 class GamesList extends Component {
   constructor() {
     super();
+    this.state = {
+      edit:false
+    }
     this.gameListItems = this.gameListItems.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
   }
   gameListItems() {
     const listItems = Object.keys(this.props.gameData).map((Id) => {
@@ -33,6 +37,8 @@ class GamesList extends Component {
             onGameUpdated={this.props.onGameUpdated}
             getGames={ ()=>this.props.getGames() }
             printGames= { ()=> this.props.printGames() }
+            edit = {this.state.edit}
+            toggleEdit={ () => this.toggleEdit()}
           />
 
 
@@ -41,6 +47,14 @@ class GamesList extends Component {
     return listItems;
 
 
+  }
+  // setting state of edit to true - rename to toggle edit
+  toggleEdit() {
+    if(this.state.edit === true)
+    this.setState({edit:false})
+    else {
+      this.setState({edit:true})
+    }
   }
 
   render(){
