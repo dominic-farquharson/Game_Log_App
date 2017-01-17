@@ -11,7 +11,7 @@ class GameStats extends React.Component {
       <p>{this.props.statTitle}</p>
       <p>{this.props.statDescription}</p>
       <button>Edit</button>
-      <button>Delete</button>
+      <button onClick={ ()=> this.props.deleteStats()}>Delete</button>
       </ul>
     )
   }

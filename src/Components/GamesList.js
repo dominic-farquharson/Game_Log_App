@@ -43,6 +43,7 @@ class GamesList extends Component {
     this.postStat = this.postStat.bind(this);
     this.grabInputTitle = this.grabInputTitle.bind(this);
     this.grabInputDescription = this.grabInputDescription.bind(this);
+    this.deleteStat = this.deleteStat.bind(this);
   }
   gameListItems() {
           // if (this.state.view === false) {
@@ -174,6 +175,7 @@ class GamesList extends Component {
               <GameStats
                 statTitle={this.state.stats[Id]['title']}
                 statDescription = {this.state.stats[Id]['description']}
+                deleteStats={ ()=> this.deleteStat(Id)}
               />
               </li>
 
@@ -194,7 +196,8 @@ class GamesList extends Component {
           .then( (response) => {
             console.log(response.data)
             console.log('Success!');
-            this.setState({editStat:false})
+            this.setState({editStat:false});
+            this.printStats(key);
 
           })
           .catch( (error) => {
@@ -202,6 +205,30 @@ class GamesList extends Component {
           })
 
       }
+
+      deleteStat(key) {
+        console.log('delete',key);
+        console.log(this.state.game);
+            // grabbing prompt value
+            const input = prompt('Would you like to delete this Stat? (Y/N)', 'Type Y or N');
+            // Item deleted if yes
+            if (input == 'Y') {
+                const url = `https://game-log-app.firebaseio.com/${this.state.key}/stats/${key}/.json`;
+                axios.delete(url).then((response) => {
+                    alert('Game has been deleted');
+                    // Updating state, by performing another get request
+                    this.props.getGames();
+                    // printing out games based on updated State
+                    this.props.printGames();
+
+                }).catch((error) => console.log(error)// Item not deleted if no
+                );
+            } else {
+                alert('It will not be deleted');
+            }
+
+        }
+
 
 
   render(){

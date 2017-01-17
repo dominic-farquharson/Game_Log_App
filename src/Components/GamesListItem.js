@@ -17,6 +17,7 @@ class GamesListItem extends React.Component {
 
   // Delete Game from database
   deleteGame(key) {
+    console.log('delete function')
       // grabbing prompt value
       const input = prompt('Would you like to delete this Game? (Y/N)', 'Type Y or N');
       // Item deleted if yes
