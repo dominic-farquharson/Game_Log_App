@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 class Input extends React.Component {
     constructor() {
@@ -22,6 +23,7 @@ class Input extends React.Component {
         this.setState({url: e.target.value});
     }
 
+      //  making a post request
     postInput() {
 
         const inputTitle = this.state.title;
@@ -30,13 +32,16 @@ class Input extends React.Component {
 
         //console.log('title',inputTitle, 'url', url)
 
-        //  making a post request
+
         //  posting game title and game url from input fields
         axios.post(postUrl, {
             title: inputTitle,
             url: url
         }).then(() => {
-            console.log('Request has been sent.')
+            console.log('Request has been sent.');
+            // clearing input fields after a successful submission
+            $('#title').val('').attr('placeholder', 'Enter a title');
+            $('#url').val('').attr('placeholder', 'Enter the url of the game cover');
         }).catch((error) => {
             console.log('There was an error');
         })
