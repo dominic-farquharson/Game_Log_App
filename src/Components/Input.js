@@ -5,21 +5,28 @@ class Input extends React.Component {
     constructor() {
         super();
         this.state = {
-            value: 'Enter a Game Title'
+            title: 'Enter a Game Title',
+            url: 'Enter the url of the game cover'
         }
         // binding functions
-        this.grabInput = this.grabInput.bind(this);
+        this.grabInputTitle = this.grabInputTitle.bind(this);
+          this.grabInputUrl = this.grabInputUrl.bind(this);
         this.postInput = this.postInput.bind(this);
     }
     // function to handle input field changes, setting input as state
-    grabInput(e) {
-      this.setState({value:e.target.value});
+    grabInputTitle(e) {
+      this.setState({title:e.target.value});
+    }
+    // function to grab url from url input field
+    grabInputUrl(e) {
+      this.setState({url:e.target.value});
     }
 
     postInput() {
 
-      const inputValue = this.state.value;
-        console.log(inputValue)
+      const inputTitle = this.state.title;
+      const url = this.state.url;
+        console.log('title',inputTitle, 'url', url)
       // making a post request
       // posting game title from input field
       // axios.post(url, {title:inputValue}).then( ()=>{
@@ -35,7 +42,8 @@ class Input extends React.Component {
     render() {
         return (
             <div>
-                <input placeholder={this.state.value} onChange={this.grabInput}/>
+                <input placeholder={this.state.title} onChange={this.grabInputTitle}/>
+                <input placeholder={this.state.url} onChange={this.grabInputUrl}/>
                 <button onClick={this.postInput}>Submit</button>
             </div>
         )
