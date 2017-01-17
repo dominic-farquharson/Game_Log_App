@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Match, Miss } from 'react-router';
+import Header from './Components/Header';
+import AddGame from './Components/AddGame';
+import Home from './Components/Home';
 
 class App extends Component {
   render() {
     return (
+      <BrowserRouter>
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <Header />
+          <Match exactly pattern="/" component={Home} />
+          <Match exactly pattern="/AddGame" component={AddGame} />
       </div>
+      </BrowserRouter>
     );
   }
 }
