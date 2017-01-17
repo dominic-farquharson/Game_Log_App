@@ -79,6 +79,7 @@ class GamesListItem extends React.Component {
 
   render() {
     const gameId=this.props.gameId;
+    // Rendering Game if View Button is pressed
       if(this.props.view === true) {
         return (
           <h1>View of {gameId}</h1>

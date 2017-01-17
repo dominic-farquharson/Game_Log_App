@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import GamesListItem from './GamesListItem';
+
+
+import Header from './Header';
 /*
 Object.keys(this.state.games).map((gameId) => {
     return <li id={gameId} key={gameId}>
@@ -28,7 +31,9 @@ class GamesList extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
   }
   gameListItems() {
+          if (this.state.view === false) {
     const listItems = Object.keys(this.props.gameData).map((Id) => {
+
         return(
 
           <GamesListItem
@@ -40,12 +45,21 @@ class GamesList extends Component {
             printGames= { ()=> this.props.printGames() }
             edit = {this.state.edit}
             toggleEdit={ () => this.toggleEdit()}
+            toggleView={ ()=> this.toggleView()}
+            view={this.state.view}
           />
 
 
         )
-    });
+    })
     return listItems;
+    }
+    else
+      return (
+        <div>Hello
+        <button onClick={ ()=>{this.toggleView()}}>Return Home</button>
+        </div>
+      )
 
 
   }
@@ -58,7 +72,14 @@ class GamesList extends Component {
     }
   }
 
-  // setting state of view to true 
+  // setting state of view to true
+  toggleView() {
+    if(this.state.view === true)
+    this.setState({view:false})
+    else {
+      this.setState({view:true})
+    }
+  }
 
   render(){
     return(
