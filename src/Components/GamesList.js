@@ -173,7 +173,7 @@ class GamesList extends Component {
         const listItems = Object.keys(this.state.stats).map((Id) => {
 
             return(
-              <li key={Id}>
+              <li key={Id} className="list-group-item">
               <GameStats
                 statTitle={this.state.stats[Id]['title']}
                 statDescription = {this.state.stats[Id]['description']}
@@ -250,11 +250,11 @@ class GamesList extends Component {
                 <h1>{this.state.gameData['title']}</h1>
                 <img src={this.state.gameData['url']} />
                 <br />
-                <button onClick={ ()=> this.toggleEditStat()}>Add Stat</button>
+                <button className="btn btn-success" onClick={ ()=> this.toggleEditStat()}>Add Stat</button>
 
-                <button onClick={()=> this.toggleView()}>Return</button>
+                <button className="btn btn-primary" onClick={()=> this.toggleView()}>Return</button>
                 {/* Printing games from database */}
-                {this.printStats(this.state.key)}
+                <ul>{this.printStats(this.state.key)}</ul>
 
         </div>
       )
@@ -265,8 +265,10 @@ class GamesList extends Component {
         <h1>Add A Stat</h1>
         <input placeholder={this.state.statTitle} onChange={this.grabInputTitle}/>
         <input placeholder={this.state.statDescription} onChange={this.grabInputDescription}/>
-        <button onClick={ ()=> this.postStat(this.state.key)}>Submit Stat</button>
-        <button onClick={ ()=>this.toggleEditStat()}>Cancel</button>
+        <br />
+        <br />
+        <button className="btn btn-success" onClick={ ()=> this.postStat(this.state.key)}>Submit Stat</button>
+        <button className="btn btn-warning" onClick={ ()=>this.toggleEditStat()}>Cancel</button>
         </div>
       )
     }

@@ -52,14 +52,15 @@ class Input extends React.Component {
             <div>
                 <label htmlFor="title">Title
 
-                    <input id="title" placeholder={this.state.title} onChange={this.grabInputTitle}/>
+                    <input className="form-control" id="title" placeholder={this.state.title} onChange={this.grabInputTitle}/>
 
                 </label>
                 <br/>
                 <label htmlFor="url">Enter the Game cover (url)
-                    <input id="url" placeholder={this.state.url} onChange={this.grabInputUrl}/>
+                    <input className="form-control" id="url" placeholder={this.state.url} onChange={this.grabInputUrl}/>
                 </label>
-                <button onClick={this.postInput}>Submit</button>
+                <br />
+                <button className="btn btn-success" onClick={this.postInput}>Submit</button>
             </div>
         )
     }

@@ -12,7 +12,7 @@ class Header extends Component {
   render() {
       const header = this.props;
     return(
-      <div>
+      <div id="header">
         <h1>{header.title}</h1>
       <Link to="/"
       activeOnlyWhenExact
@@ -25,7 +25,7 @@ class Header extends Component {
       activeClassName="underline">
       Add Game
       </Link>
-      
+      <hr />
       </div>
     )
   }

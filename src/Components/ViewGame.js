@@ -115,7 +115,7 @@ class ViewGame extends React.Component {
         <li>
           <p>{this.state.titles[data]['title']}</p>
           <p>{this.state.titles[data]['description']}</p>
-          <button onClick={ ()=> this.deleteStat(data) }>Delete</button>
+          <button  onClick={ ()=> this.deleteStat(data) }>Delete</button>
           <button onClick={ ()=> this.editStat(data) }>Edit</button>
 
         </li>

@@ -86,18 +86,19 @@ class GamesListItem extends React.Component {
 
       if(this.props.edit===false) {
         return (
-      <li id={gameId} key={gameId}>
-        {this.props.gameData[gameId]['title']}
+      <li id={gameId} key={gameId} className="list-group-item">
+        <h1>{this.props.gameData[gameId]['title']}</h1>
         <br/>
-        {<img src={this.props.gameData[gameId]['url']} />}
+        {<img className="img-thumbnail" src={this.props.gameData[gameId]['url']} />}
         <br />
         {/* View Button - sending key value as argument */}
-       <button onClick={() => {this.props.toggleView() }}>View</button>
-        <br/> {/* Edit Button - sending key value as argument */}
-        <button onClick={() => this.props.toggleEdit()}>Edit</button>
+        <br/>
+       <button className="btn btn-primary" onClick={() => {this.props.toggleView() }}>View</button>
+        {/* Edit Button - sending key value as argument */}
+        <button className="btn btn-warning" onClick={() => this.props.toggleEdit()}>Edit</button>
        {/* Delete Button -sending key value as argument */}
-        <button onClick={()=> this.deleteGame(gameId)}>Delete</button>
-        <hr />
+        <button className="btn btn-danger" onClick={()=> this.deleteGame(gameId)}>Delete</button>
+
       </li>
     )
     }
@@ -113,8 +114,8 @@ class GamesListItem extends React.Component {
           {<input placeholder={this.props.gameData[gameId]['url']} onChange={this.grabInputUrl} />}
           <br />
          {/* Delete Button -sending key value as argument */}
-         <button onClick={() => this.props.toggleEdit()}>Cancel</button>
-          <button onClick={()=>this.postGames(gameId)}>Submit</button>
+         <button className="btn btn-warning" onClick={() => this.props.toggleEdit()}>Cancel</button>
+          <button className="btn btn-success" onClick={()=>this.postGames(gameId)}>Submit</button>
           <br />
           <hr />
         </li>

@@ -58,12 +58,12 @@ class GameStats extends React.Component {
 
     if(!this.state.edit) {
     return (
-      <ul>
-      <p>{this.props.statTitle}</p>
-      <p>{this.props.statDescription}</p>
-      <button onClick={()=>this.toggleEdit()}>Edit</button>
-      <button onClick={ ()=> this.props.deleteStats()}>Delete</button>
-      </ul>
+      <div>
+      <h2>{this.props.statTitle}</h2>
+      <h2>{this.props.statDescription}</h2>
+      <button className="btn btn-warning" onClick={()=>this.toggleEdit()}>Edit</button>
+      <button className="btn btn-danger" onClick={ ()=> this.props.deleteStats()}>Delete</button>
+      </div>
     )
   }
   else if(this.state.edit===true) {
@@ -74,10 +74,10 @@ class GameStats extends React.Component {
       <input placeholder={this.props.statTitle}  onChange={this.grabInputTitle} />
       <p>Description</p>
       <input placeholder={this.props.statDescription} onChange={this.grabInputDescription} />
-      <button onClick={()=>this.toggleEdit()}>Cancel</button>
-      <div>{this.props.statKey}</div>
-      <div>{this.props.gameKey}</div>
-      {<button onClick={ ()=> this.submitEdit(this.props.statKey, this.props.gameKey) }>Submit</button>}
+      <br />
+      <br />
+        <button className="btn btn-danger" onClick={()=>this.toggleEdit()}>Cancel</button>
+      {<button className="btn btn-success" onClick={ ()=> this.submitEdit(this.props.statKey, this.props.gameKey) }>Submit</button>}
 
       </div>
     )

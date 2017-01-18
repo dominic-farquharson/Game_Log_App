@@ -11,7 +11,7 @@ let AddGame = (props) => {
 
     return (
         <div>
-            <Header title="Add Game"/>
+            <Header title=" Game Logger"/>
             <Input />
         </div>
     )

@@ -7,7 +7,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Header title="Game Logger Home"/>
+                <Header title="Game Logger"/>
                 <LoadGames />
             </div>
         )

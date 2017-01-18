@@ -149,7 +149,7 @@ class LoadGames extends Component {
     render() {
         return (
             <div>
-                <div>Games Feed</div>
+                <div id="gamesFeed">Games Feed</div>
                 {this.printGames()}
             </div>
         )
