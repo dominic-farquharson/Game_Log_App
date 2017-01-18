@@ -42,13 +42,9 @@ class GamesListItem extends React.Component {
   postGames(key) {
     // chaning edit state to false on Submit
 
-    //this.props.toggleEdit();
-
-  //     // console.log('yes?', key)
       const title = this.state.title;
       const url = this.state.url;
       // Url of item in database
-
       const postUrl =  `https://game-log-app.firebaseio.com/${key}/.json`;
 
       //  posting game title and game url from input fields
@@ -77,12 +73,9 @@ class GamesListItem extends React.Component {
       this.setState({url: e.target.value});
   }
 
-
-
   render() {
     const gameId=this.props.gameId;
     // Rendering Game if View Button is pressed
-
 
       if(this.props.edit===false) {
         return (

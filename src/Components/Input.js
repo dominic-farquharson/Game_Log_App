@@ -30,9 +30,6 @@ class Input extends React.Component {
         const url = this.state.url;
         const postUrl = 'https://game-log-app.firebaseio.com/.json';
 
-        //console.log('title',inputTitle, 'url', url)
-
-
         //  posting game title and game url from input fields
         axios.post(postUrl, {
             title: inputTitle,

@@ -20,11 +20,11 @@ class GameStats extends React.Component {
     const inputTitle = this.state.statTitle;
     const description= this.state.statDescription;
     const postUrl = `https://game-log-app.firebaseio.com/${index}/stats/${key}.json`;
-    console.log('key', key);
+
       axios.put(postUrl, {title:inputTitle, description:description})
       .then( (response) => {
         this.setState({editStat:false});
-        //this.printStats(key);:
+
 
       })
       .catch( (error) => {

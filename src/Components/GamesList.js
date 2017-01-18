@@ -2,24 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import GamesListItem from './GamesListItem';
 import GameStats from './GameStats';
-
-
 import Header from './Header';
-/*
-Object.keys(this.state.games).map((gameId) => {
-    return <li id={gameId} key={gameId}>
-        {this.state.games[`${gameId}`]['title']}
-        <br/> {< img src = {
-            this.state.games[`${gameId}`]['url']
-        } />}
-        <br/> {/* View Button - sending key value as argument *///}
-        // <button onClick={() => this.viewGame(data)}>View</button>
-        // <br/> {/* Edit Button - sending key value as argument */}
-        // <button onClick={() => this.toggleEdit(data)}>Edit</button>
-        // {/* Delete Button -sending key value as argument */}
-        // <button onClick={() => this.deleteGame(data)}>Delete</button>
-//    </li>
-//})
 
 class GamesList extends Component {
   constructor() {
@@ -36,7 +19,6 @@ class GamesList extends Component {
     }
     this.gameListItems = this.gameListItems.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
-    this.grabKey = this.grabKey.bind(this);
     this.toggleView = this.toggleView.bind(this);
     this.fetchGameData = this.fetchGameData.bind(this);
     this.printStats = this.printStats.bind(this);
@@ -48,8 +30,9 @@ class GamesList extends Component {
   componentDidMount() {
       this.printStats(this.state.key)
   }
+  // prints game list Items via GamesListItem component
   gameListItems() {
-          // if (this.state.view === false) {
+
     const listItems = Object.keys(this.props.gameData).map((Id) => {
 
         return(
@@ -58,33 +41,19 @@ class GamesList extends Component {
             key={Id}
             gameId={Id}
             gameData={this.props.gameData}
-            onGameUpdated={this.props.onGameUpdated}
             getGames={ ()=>this.props.getGames() }
             printGames= { ()=> this.props.printGames() }
             edit = {this.state.edit}
             toggleEdit={ () => this.toggleEdit()}
             toggleView={ ()=> this.toggleView(Id)}
             view={this.state.view}
-            grabKey={()=>this.grabKey()}
           />
 
 
         )
     })
     return listItems;
-    // }
-    // else
-    //   return (
-    //     <div>Hello
-    //     <button onClick={ ()=>{this.toggleView()}}>Return Home</button>
-    //     </div>
-    //   )
 
-
-  }
-
-  grabKey(key) {
-    this.setState({key:key})
   }
 
   // function to handle input field changes, setting input as state
@@ -96,7 +65,7 @@ class GamesList extends Component {
       this.setState({statDescription: e.target.value});
   }
 
-  // setting state of edit to true - rename to toggle edit
+  // setting state of edit to true - renamed to toggle edit
   toggleEdit() {
     if(this.state.edit === true)
     this.setState({edit:false})
@@ -110,8 +79,7 @@ class GamesList extends Component {
     // setting key value to the state to have access to it in render
     this.setState({key:key});
     this.fetchGameData(key);
-    // console.log(this.state.key)
-    console.log(key);
+
     if(this.state.view === true)
     this.setState({view:false})
     else {
@@ -119,6 +87,7 @@ class GamesList extends Component {
     }
   }
 
+// toggle state of edit. Enables you to edit a stat
   toggleEditStat() {
     if(this.state.editStat == null) {
       this.setState({editStat:false})
@@ -130,30 +99,23 @@ class GamesList extends Component {
     }
   }
 
+// grabbing game data from firebase. (title, url)
   fetchGameData(key) {
-    console.log('fetch key',key);
-    console.log('Fetch Stat has run');
+
     const fetchUrl = `https://game-log-app.firebaseio.com/${key}/.json`;
     axios.get(fetchUrl)
     .then( (response)=> {
-      console.log('fetch has run');
-      console.log('response',response.data);
+      // setting game data state based on response from axios get request
       this.setState({gameData:response.data});
-      console.log('game data state',this.state.gameData)
+
     })
     .catch( (error)=> {
       console.log(error)
     })
 
-    return (
-      console.log('key',key),
-        console.log('titles',this.state.gameData)
-    )
-
-
   }
 
-  // fetching Stats from database
+  // fetching Gane Stats from database
   printStats(key) {
     console.log(key)
     const fetchUrl = `https://game-log-app.firebaseio.com/${key}/stats/.json`;
@@ -166,15 +128,15 @@ class GamesList extends Component {
     .catch( (error)=> {
       console.log(error)
     })
-
-        if(this.state.stats ===null) {
+    // preventing error when stats are null
+    if(this.state.stats ===null) {
           return;
-        }
-        const listItems = Object.keys(this.state.stats).map((Id) => {
+    }
+    const listItems = Object.keys(this.state.stats).map((Id) => {
 
-            return(
-              <li key={Id} className="list-group-item">
-              <GameStats
+      return(
+        <li key={Id} className="list-group-item">
+            <GameStats
                 statTitle={this.state.stats[Id]['title']}
                 statDescription = {this.state.stats[Id]['description']}
                 deleteStats={ ()=> this.deleteStat(Id)}
@@ -182,7 +144,7 @@ class GamesList extends Component {
                 gameKey={this.state.key}
 
               />
-              </li>
+        </li>
 
 
             )
@@ -196,19 +158,18 @@ class GamesList extends Component {
         const inputTitle = this.state.statTitle;
         const description= this.state.statDescription;
         const postUrl = `https://game-log-app.firebaseio.com/${key}/stats/.json`;
-        console.log('key', key);
-          axios.post(postUrl, {title:inputTitle, description:description})
-          .then( (response) => {
-            this.setState({editStat:false});
-            this.printStats(key);
+        axios.post(postUrl, {title:inputTitle, description:description})
+        .then( (response) => {
+          this.setState({editStat:false});
+          this.printStats(key);
 
           })
-          .catch( (error) => {
+        .catch( (error) => {
             console.log(error)
           })
 
       }
-
+// deleting game stat from firebase - delete request
       deleteStat(key) {
             // grabbing prompt value
             const input = prompt('Would you like to delete this Stat? (Y/N)', 'Type Y or N');
