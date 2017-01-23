@@ -18,7 +18,10 @@
 ##Installation Instructions
 
 - Download folder.
-- Double click on index.html to run the game
+- Run npm install in terminal.
+- Run npm start from terminal.
+- Or go to build folder and Double click on index.html to run the game
+
 
 ---
 ##Sample Code: Printing Game Stats
