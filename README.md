@@ -2,7 +2,7 @@
 
 ![Game Log App](assets/project.png)
 
-###[Link to game](https://github.com/dominic-farquharson/Game_Log_App)
+###[Link to game](http://messenger-ferret-81632.bitballoon.com/)
 ---
 ##Technologies Used:
 - HTML
