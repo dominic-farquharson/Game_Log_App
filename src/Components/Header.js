@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import  {Link}  from 'react-router';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+// import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 
 
-const navbarInstance = (
+/*const navbarInstance = (
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
@@ -33,7 +33,7 @@ const navbarInstance = (
     </Navbar.Collapse>
   </Navbar>
 );
-
+*/
 
 
 // Header Component - nav bar

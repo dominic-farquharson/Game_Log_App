@@ -34,7 +34,7 @@ class GameStats extends React.Component {
   }
   //switching state from true to false to output edit fields
   toggleEdit() {
-    if(this.state.edit==false) {
+    if(this.state.edit===false) {
     this.setState({edit:true})
   }
   else {

@@ -1,25 +1,52 @@
+// importing React
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Match, Miss } from 'react-router';
-import Header from './Components/Header';
-import AddGame from './Components/AddGame';
-import Home from './Components/Home';
+// Welcome page - user not signed in
+import Index from './Components/Auth/Index';
 
-
+// creating app Component
 class App extends Component {
+  constructor() {
+    super();
+    // setting initial state
+    this.state = {
+      // creating initial state for user object
+      user: {
+        // user not logged in
+        signedIn: false,
+        // initial email 
+        email: '',
+        // initial username
+        username: '',
+        // no games List data
+        gamesList: {}
+      }
+    }
+
+  }
   render() {
+    // setting user state to a variable
+    const user = this.state.user;
+    // Renders landing page when sign in is false
+    if(!user.signedIn) {
     return (
-      <BrowserRouter>
+
       <div className="App">
 
-          <Match exactly pattern="/" component={Home} />
-          <Match exactly pattern="/AddGame" component={AddGame} />
-          
+        <Index />
+
       </div>
-      </BrowserRouter>
+     
     );
+    }
+   // renders when user signs in - will render Games List
+    else {
+      return (
+        <div>User is signed In</div>
+      )
+    }
   }
 }
+
+
 
 export default App;

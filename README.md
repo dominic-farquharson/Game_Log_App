@@ -96,7 +96,7 @@ Part 3
 #### For Version 2:
 - Use Firebase API to allow for additional users - in progress
 - Rebuild app to beter handle state - in progress
-- Style w/ SCSS
+- Style w/ React Bootstrap
 
 
 ---

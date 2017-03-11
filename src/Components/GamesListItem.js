@@ -21,7 +21,7 @@ class GamesListItem extends React.Component {
       // grabbing prompt value
       const input = prompt('Would you like to delete this Game? (Y/N)', 'Type Y or N');
       // Item deleted if yes
-      if (input == 'Y') {
+      if (input === 'Y') {
           const url = `https://game-log-app.firebaseio.com/${key}/.json`;
           axios.delete(url).then((response) => {
               alert('Game has been deleted');
