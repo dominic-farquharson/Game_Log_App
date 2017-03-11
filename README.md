@@ -90,9 +90,11 @@ Part 3
 
 ###Future Goals:
 - Styling! Styling! Styling!
-- I would like to hoist state up to better distribute the data to components that will use it.
+- I would like to hoist state up to better distribute the data to components that will use it. - in progress
 - Would love to integrate an external API to fetch data pertaining to the Game that the user added.
 - Will definitely want to play around with breaking down functions into separate components when the code is used multiple times.
+- Using Firebase API to allow for additional users - in progress
+- Rebuilding App - in progress
 
 
 ---
