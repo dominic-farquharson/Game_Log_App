@@ -100,11 +100,11 @@ Part 3
 
 
 ---
-##Special Thanks
+## Special Thanks
 
 Special thanks to my IA, Paris for providing direction as well as my fellow classmates for helping me out with any questions I had along the way. Paris helped explain to me the importance of letting React handle DOM manipulation. I will definitely practice it more.
 
 ---
-##Author
+## Author
 
 Dominic Farquharson
