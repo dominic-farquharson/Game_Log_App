@@ -82,7 +82,7 @@ class GamesListItem extends React.Component {
       <li id={gameId} key={gameId} className="list-group-item">
         <h1>{this.props.gameData[gameId]['title']}</h1>
         <br/>
-        {<img className="img-thumbnail" src={this.props.gameData[gameId]['url']} />}
+        {<img src={this.props.gameData[gameId]['url']} />}
         <br />
         {/* View Button - sending key value as argument */}
         <br/>

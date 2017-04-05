@@ -1,39 +1,37 @@
 import React, {Component} from 'react';
-import  {Link}  from 'react-router';
-// import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+  Switch
+} from 'react-router-dom';
+// React bootstrap
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+// // Add Game component
+// import AddGame from './AddGame';
 
 
-/*const navbarInstance = (
+const NavbarInstance= (
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Game Logger</a>
+        <Link to="/">Game Logger</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <Nav>
-        <NavItem eventKey={1} >    <Link to="/"
-            activeOnlyWhenExact
-            activeClassName="underline">
-            Home
-          </Link></NavItem>
-        <NavItem eventKey={2}>
-            <Link to="/AddGame"
-              activeOnlyWhenExact
-              activeClassName="underline">
-              Add Game
-            </Link>
-          </NavItem>
-      </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">About</NavItem>
-        <NavItem eventKey={2} href="#">Contact</NavItem>
+        <NavItem eventKey={1}>
+          <Link to="/AddGame">Add Game</Link>
+        </NavItem>
+        <NavItem eventKey={2} href="#">About</NavItem>
+        <NavItem eventKey={3} href="#">Contact</NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
 );
-*/
+
 
 
 // Header Component - nav bar
@@ -47,12 +45,9 @@ class Header extends Component {
   render() {
       const header = this.props;
     return(
-
-    <div>
-      
-      {navbarInstance}
-    </div>
-
+        <header>
+         {NavbarInstance}
+        </header>
     )
   }
 }

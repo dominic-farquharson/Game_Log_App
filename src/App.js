@@ -2,6 +2,20 @@
 import React, { Component } from 'react';
 // Welcome page - user not signed in
 import Index from './Components/Auth/Index';
+// importing header
+import Header from './Components/Header';
+// importing Home
+import Home from './Components/Home';
+// importing Add Game component
+import AddGame from './Components/AddGame';
+
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  NavLink,
+  Switch
+} from 'react-router-dom';
 
 // creating app Component
 class App extends Component {
@@ -26,8 +40,20 @@ class App extends Component {
   render() {
     // setting user state to a variable
     const user = this.state.user;
+
+    return (
+      <BrowserRouter>
+          <switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/AddGame" component={AddGame} />
+          </switch>
+      </BrowserRouter>
+    )
+
+
+
     // Renders landing page when sign in is false
-    if(!user.signedIn) {
+    /*if(!user.signedIn) {
     return (
 
       <div className="App">
@@ -43,7 +69,7 @@ class App extends Component {
       return (
         <div>User is signed In</div>
       )
-    }
+    }*/
   }
 }
 

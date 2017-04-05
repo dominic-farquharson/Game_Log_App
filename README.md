@@ -1,8 +1,8 @@
-#Game Log App
+# Game Log App
 
 ![Game Log App](assets/project.png)
 
-###[Link to game](http://messenger-ferret-81632.bitballoon.com/)
+### [Link to game](http://messenger-ferret-81632.bitballoon.com/)
 ---
 ##Technologies Used:
 - HTML
@@ -15,7 +15,7 @@
 - Firebase
 - axios
 ---
-##Installation Instructions
+## Installation Instructions
 
 - Download folder.
 - Run npm install in terminal.
@@ -24,7 +24,7 @@
 
 
 ---
-##Sample Code: Printing Game Stats
+## Sample Code: Printing Game Stats
 ```javascript
 
 printStats(key) {
@@ -44,7 +44,7 @@ printStats(key) {
 }
 ```
 ---
-##Build Strategy
+## Build Strategy
 ```
 React.js:
 
@@ -65,13 +65,13 @@ BootStrap:
 
 ```  
 ---
-##Project Outline/Wireframe
+## Project Outline/Wireframe
 
 
 
 [User Stories - Trello](https://trello.com/b/R4mSObNh/game-log-app)
 
-###Wireframe
+### Wireframe
 Part 1
 ![image1](assets/wireframe3.jpg)
 Part 2
@@ -82,13 +82,13 @@ Part 3
 
 
 ---
-##Issues/Future Goals
-###Issues:
+## Issues/Future Goals
+### Issues:
 - One issue I had was with breaking down components. I found myself reusing functions would could have easily been its own component.
 - Another issue I had was with rendering elements using React. I was initially performing DOM manipulation outside of React, until I learned the proper way to render the elements.
 - Passing down state was an issue. I did not hoist state up to a parent component that could then distribute it to child elements to share the data. Because of this I often had to keep fetching data to setState once again.
 
-###Future Goals:
+### Future Goals:
 - Styling! Styling! Styling!
 - I would like to hoist state up to better distribute the data to components that will use it.
 - Would love to integrate an external API to fetch data pertaining to the Game that the user added.
