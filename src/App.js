@@ -17,6 +17,15 @@ import {
   Switch
 } from 'react-router-dom';
 
+// No Match Component
+const NoMatch = () => (
+  <section>
+    <h1>That route does not exist</h1>
+    <Link to="/">Return Home</Link>
+  </section>
+);
+
+
 // creating app Component
 class App extends Component {
   constructor() {
@@ -43,10 +52,14 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-          <switch>
+          <Switch>
+            {/* Root */}
             <Route exact path="/" component={Home} />
+            {/* AddGame Route */}
             <Route exact path="/AddGame" component={AddGame} />
-          </switch>
+            {/* Catching incorrect routes */}
+            <Route component={NoMatch} />
+          </Switch>
       </BrowserRouter>
     )
 

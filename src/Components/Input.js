@@ -46,16 +46,12 @@ class Input extends React.Component {
 
     render() {
         return (
-            <div>
-                <label htmlFor="title">Title
-
-                    <input className="form-control" id="title" placeholder={this.state.title} onChange={this.grabInputTitle}/>
-
-                </label>
+            <div className="addGameInput">
+                <label htmlFor="title">Title</label>
+                <input className="form-control" id="title" placeholder={this.state.title} onChange={this.grabInputTitle}/>
                 <br/>
-                <label htmlFor="url">Enter the Game cover (url)
-                    <input className="form-control" id="url" placeholder={this.state.url} onChange={this.grabInputUrl}/>
-                </label>
+                <label htmlFor="url">Enter the Game cover (url)</label>
+                <input className="form-control" id="url" placeholder={this.state.url} onChange={this.grabInputUrl}/>
                 <br />
                 <button className="btn btn-success" onClick={this.postInput}>Submit</button>
             </div>

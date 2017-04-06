@@ -194,47 +194,42 @@ class GamesList extends Component {
 
 
   render(){
-
       if(this.state.view==false) {
         return(
-      <ul id="gamesFeed">
-
-        {this.gameListItems()}
-        </ul> ) }
-
-
-        else {
+          <ul id="gamesFeed">
+            {this.gameListItems()}
+          </ul> 
+        ) 
+      } else {
           if(this.state.editStat ===false) {
-        return (
-          <div>
-                {/* View Button - runs when view state is true */}
-                <h1>{this.state.gameData['title']}</h1>
-                <img src={this.state.gameData['url']} />
-                <br />
-                <button className="btn btn-success" onClick={ ()=> this.toggleEditStat()}>Add Stat</button>
+            return (
+              <div className="gameStat">
+                    {/* View Button - runs when view state is true */}
+                    <h1>{this.state.gameData['title']}</h1>
+                    <img src={this.state.gameData['url']} />
+                    <br />
+                    <button className="btn btn-success" onClick={ ()=> this.toggleEditStat()}>Add Stat</button>
 
-                <button className="btn btn-primary" onClick={()=> this.toggleView()}>Return</button>
-                {/* Printing games from database */}
-                <ul>{this.printStats(this.state.key)}</ul>
+                    <button className="btn btn-primary" onClick={()=> this.toggleView()}>Return</button>
+                    {/* Printing games from database */}
+                    <ul>{this.printStats(this.state.key)}</ul>
 
-        </div>
-      )
+            </div>
+          )
+        } else {
+            return (
+              <div>
+              <h1>Add A Stat</h1>
+              <input placeholder={this.state.statTitle} onChange={this.grabInputTitle}/>
+              <input placeholder={this.state.statDescription} onChange={this.grabInputDescription}/>
+              <br />
+              <br />
+              <button className="btn btn-success" onClick={ ()=> this.postStat(this.state.key)}>Submit Stat</button>
+              <button className="btn btn-warning" onClick={ ()=>this.toggleEditStat()}>Cancel</button>
+              </div>
+            )
+      }
     }
-    else {
-      return (
-        <div>
-        <h1>Add A Stat</h1>
-        <input placeholder={this.state.statTitle} onChange={this.grabInputTitle}/>
-        <input placeholder={this.state.statDescription} onChange={this.grabInputDescription}/>
-        <br />
-        <br />
-        <button className="btn btn-success" onClick={ ()=> this.postStat(this.state.key)}>Submit Stat</button>
-        <button className="btn btn-warning" onClick={ ()=>this.toggleEditStat()}>Cancel</button>
-        </div>
-      )
-    }
-}
-
   }
 }
 

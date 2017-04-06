@@ -11,7 +11,7 @@ import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 // // Add Game component
 // import AddGame from './AddGame';
 
-
+// React bootstrap
 const NavbarInstance= (
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
@@ -46,7 +46,7 @@ class Header extends Component {
       const header = this.props;
     return(
         <header>
-         {NavbarInstance}
+          {NavbarInstance}
         </header>
     )
   }

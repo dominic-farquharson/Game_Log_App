@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import GamesList from './GamesList';
 import $ from 'jquery';
-import './LoadGames.css';
-
-
 
 /* Load Game component
 Will perform a get request to output games data
@@ -22,17 +19,12 @@ class LoadGames extends Component {
         // binding methods
         this.getGames = this.getGames.bind(this);
         this.printGames = this.printGames.bind(this);
-
     }
-
     componentDidMount() {
         this.getGames();
     }
     componentWillMount() {
-
         this.getGames();
-
-
     }
 
     // Performing get request
@@ -62,7 +54,7 @@ class LoadGames extends Component {
     render() {
         return (
             <div>
-                <div id="gamesFeed">Games Feed</div>
+                <h1 id="gamesFeedTitle">Games Feed</h1>
                 {this.printGames()}
             </div>
         )

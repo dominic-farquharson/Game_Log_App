@@ -27,11 +27,32 @@ a:hover {
   padding:0;
   text-align: center;
 }
+.addGameInput {
+  text-align: center;
+}
+.addGameInput>input {
+  width:75%;
+  margin:0 auto;
+}
+
+#gamesFeedTitle {
+  font-family: 'Lato', sans-serif;
+  text-align: center;  
+}
+
+#addStat {
+  display:block;
+  margin: 0 auto;
+}
+
+.gameStat {
+  text-align: center;
+}
 
 /* Mobile */
 @media screen and (max-width:480px) {
   body {
-    background:blue;
+    /*background:blue;*/
   }
 .list-group-item {
     width:100%;
@@ -46,7 +67,7 @@ a:hover {
 /* Tablet */
 @media screen and (min-width: 481px) and (max-width: 1023px) {
     body {
-    background:green;
+    /*background:green;*/
   }
 .list-group-item {
     width:50%;
@@ -63,7 +84,7 @@ a:hover {
 /* Desktop */
 @media screen and (min-width:1024px) {
   body {
-    background:red;
+    /*background:red;*/
   }
 .list-group-item {
     display:inline-block;

@@ -59,10 +59,10 @@ class GameStats extends React.Component {
     if(!this.state.edit) {
     return (
       <div>
-      <h2>{this.props.statTitle}</h2>
-      <h2>{this.props.statDescription}</h2>
-      <button className="btn btn-warning" onClick={()=>this.toggleEdit()}>Edit</button>
-      <button className="btn btn-danger" onClick={ ()=> this.props.deleteStats()}>Delete</button>
+        <h2>{this.props.statTitle}</h2>
+        <h2>{this.props.statDescription}</h2>
+        <button className="btn btn-warning" onClick={()=>this.toggleEdit()}>Edit</button>
+        <button className="btn btn-danger" onClick={ ()=> this.props.deleteStats()}>Delete</button>
       </div>
     )
   }

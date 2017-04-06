@@ -97,6 +97,8 @@ Part 3
 - Use Firebase API to allow for additional users - in progress
 - Rebuild app to beter handle state - in progress
 - Style w/ React Bootstrap
+- Fix code quality. Component structure is confusing.
+- fix responsiveness
 
 
 ---
