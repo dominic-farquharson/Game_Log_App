@@ -1,10 +1,10 @@
 # Game Log App
 
-![Game Log App](assets/project.png)
+![Game Log App](assets/project-v2.png)
 
-### [Link to game](http://messenger-ferret-81632.bitballoon.com/)
+### [Link to game](http://game-log-app.bitballoon.com/)
 ---
-##Technologies Used:
+## Technologies Used:
 - HTML
 - CSS
 - Vanilla javascript
